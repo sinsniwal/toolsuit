@@ -4,11 +4,32 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "toolsuit"
-version = "0.1.1"
+version = "0.1.2"
 description = "A lightweight wrapper to tailor and secure your Python functions for AI agents."
 readme = "README.md"
 requires-python = ">=3.9"
 license = {text = "MIT"}
+authors = [
+    {name = "Mohit Singh Sinsniwal"}
+]
+keywords = [
+    "llm", "ai", "langchain", "openai", "agent", "security", "pydantic", "anthropic"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Software Development :: Code Generators",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
 
 [project.optional-dependencies]
 dev = ["pytest>=7.0.0", "pre-commit>=3.0.0", "black>=23.0.0", "ruff>=0.0.280"]
@@ -23,3 +44,9 @@ select = ["E", "F", "W", "I"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[project.urls]
+Homepage = "https://github.com/sinsniwal/toolsuit"
+Repository = "https://github.com/sinsniwal/toolsuit"
+Issues = "https://github.com/sinsniwal/toolsuit/issues"
+Changelog = "https://github.com/sinsniwal/toolsuit/releases"

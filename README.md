@@ -6,6 +6,10 @@
 
 **A zero-dependency Python decorator that hides internal arguments from LLM tool schemas by modifying native function signatures.**
 
+<p align="center">
+  <img src="seq_diag.svg" alt="Toolsuit Sequence Diagram" width="100%">
+</p>
+
 ---
 
 Stop writing dummy wrapper functions just to hide backend state from your AI agents.
