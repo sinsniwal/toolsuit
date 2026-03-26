@@ -1,6 +1,5 @@
 # toolsuit
-
-[![PyPI](https://badge.fury.io/py/toolsuit.svg)](https://pypi.org/project/toolsuit/)
+[![PyPI version](https://img.shields.io/pypi/v/toolsuit.svg?color=blue)](https://pypi.org/project/toolsuit/)
 [![Tests](https://github.com/sinsniwal/toolsuit/actions/workflows/test.yml/badge.svg)](https://github.com/sinsniwal/toolsuit/actions/workflows/test.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
