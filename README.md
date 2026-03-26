@@ -34,9 +34,9 @@ You don't need to rewrite your backend logic. Just decorate it. `toolsuit` inter
 from typing import Any, Dict
 from toolsuit import equip
 
-@equip( 
+@equip(
 hide=["db_session"],# 1. HIDE: Completely remove these from the AI's generated JSON schema
-inject={"db_session": lambda: get_secure_database()}, # 2. INJECT: Securely fetch the missing state locally at runtime 
+inject={"db_session": lambda: get_secure_database()}, # 2. INJECT: Securely fetch the missing state locally at runtime
 alias={"user_id": lambda ai_string: resolve_internal_uuid(ai_string)}, # 3. ALIAS: Translate the AI's simplified input into your complex local internal ID
 mask_output=lambda raw_row: {"status": "ok", "user": raw_row.get("public_alias")} # 4. MASK: Strip the massive raw output down to exactly what the AI needs
 
