@@ -24,21 +24,21 @@ While signature rewriting works for basic tool calling, native integration with 
 To contribute code, you will need Python 3.9 or higher.
 
 1. **Clone the repository:**
-₹₹₹bash
+```bash
 git clone https://github.com/sinsniwal/toolsuit.git
+```
 cd toolsuit
-₹₹₹
 
-2. **Install in editable mode with dev dependencies:**
-₹₹₹bash
+3. **Install in editable mode with dev dependencies:**
+```bash
 pip install -e ".[dev]"
-₹₹₹
+```
 
 3. **Run the test suite:**
 We use pytest for all unit testing. Ensure all tests pass before submitting a Pull Request.
-₹₹₹bash
+```bash
 pytest tests/
-₹₹₹
+```
 
 ---
 
