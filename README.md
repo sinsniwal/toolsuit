@@ -1,7 +1,7 @@
 # toolsuit
 
 [![PyPI version](https://img.shields.io/pypi/v/toolsuit.svg?color=blue)](https://pypi.org/project/toolsuit/)
-[![Tests](https://github.com/sinsniwal/toolsuit/actions/workflows/tests.yml/badge.svg)](https://github.com/sinsniwal/toolsuit/actions)
+[![Tests](https://github.com/sinsniwal/toolsuit/actions/workflows/test.yml/badge.svg)](https://github.com/sinsniwal/toolsuit/actions/workflows/test.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 **A zero-dependency Python decorator that hides internal arguments from LLM tool schemas by modifying native function signatures.**
