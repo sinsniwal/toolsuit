@@ -8,10 +8,12 @@ def equip(
     inject: Optional[Dict[str, Any]] = None,
     mask_output: Optional[Callable] = None,
     map_inputs: Optional[Dict[str, Callable]] = None,
+    description: Optional[str] = None,
 ):
     """
     Tailors a function for an AI agent by hiding arguments from the schema,
-    injecting local state during execution, and masking heavy return data.
+    injecting local state during execution, masking heavy return data, and
+    overriding the docstring for LLMs.
 
     Args:
         hide (Optional[List[str]]): List of argument names to remove from
@@ -26,9 +28,12 @@ def equip(
         map_inputs (Optional[Dict[str, Callable]]): A dictionary mapping
             AI-provided argument names to resolving functions. Used to
             translate faked IDs back to real internal IDs.
+        description (Optional[str]): If provided, overrides the function's docstring
+            for LLM inspection. Useful for providing LLM-friendly instructions
+            without changing developer-facing documentation.
 
     Returns:
-        Callable: The wrapped function with a modified `__signature__`.
+        Callable: The wrapped function with a modified `__signature__` and `__doc__`.
     """
     hide_args = hide or []
     inject_args = inject or {}
@@ -44,6 +49,10 @@ def equip(
             if name not in hide_args and name not in inject_args
         ]
         new_sig = sig.replace(parameters=new_params)
+
+        # 2. Optionally override the docstring for LLM inspection
+        if description:
+            func.__doc__ = description
 
         @wraps(func)
         def wrapper(*args, **kwargs):
@@ -100,8 +109,8 @@ def equip(
             return raw_result
 
         # 5. Overwrite the signature so standard AI SDKs read the safe version
-        wrapper.__signature__ = new_sig
-
+        wrapper.__signature__ = new_sig  # type: ignore
+        wrapper.__doc__ = func.__doc__
         return wrapper
 
     return decorator

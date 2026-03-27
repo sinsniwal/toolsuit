@@ -24,6 +24,7 @@ It is a zero-dependency decorator that mutates your function's `__signature__` a
 2. **`inject`**: Securely passes your local state at runtime. The backend executes `fetch_user(user_id, db_session=local_db)`.
 3. **`map_inputs`**: Translates simple AI strings (e.g., "Alice") into your internal identifiers (e.g., "u_123") before execution.
 4. **`mask_output`**: Filters massive backend return payloads into concise summaries to save tokens and prevent context bloat.
+5. **`description`**: Overrides the function's docstring.
 
 You get clean context windows and zero leaked secrets, without changing your core business logic or adding heavy framework dependencies.
 
@@ -50,7 +51,8 @@ def get_db() -> dict:
     hide=["db_session"],
     inject={"db_session": get_db},
     map_inputs={"user_id": lambda name: {"Alice": "u_123"}.get(name, name)},
-    mask_output=lambda res: f"Success: {res['name']} is {res['role']}." if res else "Not found."
+    mask_output=lambda res: f"Success: {res['name']} is {res['role']}." if res else "Not found.",
+    description="Fetches a user record."
 )
 def fetch_user(user_id: str, db_session: Any) -> dict:
     return db_session.get(user_id, {})
