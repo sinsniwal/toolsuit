@@ -86,7 +86,7 @@ def test_pydantic_compatibility():
         for name, param in sig.parameters.items()
     }
     # This should not raise an exception about missing definitions
-    Model = create_model("MyFuncModel", **fields)
+    Model = create_model("MyFuncModel", **fields)  # type: ignore
     assert "user" in Model.model_fields
     assert "secret" not in Model.model_fields
 
@@ -126,3 +126,26 @@ def test_map_inputs_translation():
     # 2. Key-word invocation handled properly
     res_kw = fetch_records(user_id="user_B2", include_deleted=True)
     assert res_kw == (9991, True)
+
+
+def test_docstring_override():
+    # Original docstring can have mention of `db_session`
+    # for uniformity and for developer's disposal.
+    # We can override the docstring which would get passed to the LLM otherwise.
+    @equip(hide=["db_session"], description="Fetches a user record.")
+    def fetch_user(user_id: str, db_session: str):
+        """
+        Fetches a user record from the database using the provided session.
+
+        Args:
+            user_id (str): The unique identifier of the user to fetch.
+            db_session (str): The database session or connection object.
+
+        Returns:
+            The user record corresponding to the given user_id.
+        """
+        return user_id
+
+    print(fetch_user.__doc__)
+    # The docstring should be overridden for LLMs
+    assert fetch_user.__doc__ == "Fetches a user record."
